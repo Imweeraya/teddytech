@@ -6,6 +6,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { HowtouseComponent } from './components/howtouse/howtouse.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AboutmeComponent } from './components/aboutme/aboutme.component';
+
 
 @NgModule({
   declarations: [
@@ -14,10 +16,12 @@ import { ProfileComponent } from './components/profile/profile.component';
     FooterComponent,
     HomeComponent,
     HowtouseComponent,
-    ProfileComponent
+    ProfileComponent,
+    AboutmeComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
