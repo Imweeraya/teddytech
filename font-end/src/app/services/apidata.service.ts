@@ -6,7 +6,7 @@ import { User } from '../models/userModel/user.model'; // Import your User model
 
 @Injectable()
 export class ApiData {
-  private apiUrl = 'http://localhost:4000'; 
+  private apiUrl = 'https://teddytech.azurewebsites.net'; 
  
 
   constructor(private http: HttpClient) {}
