@@ -181,7 +181,7 @@ h1 ,h2 ,h3 ,h4 ,h5 ,h6{
 }
 
 .cardLenge {
-  background-color:  #C2F9A3;
+  background-color:  none;
   border-radius: 15px;
   z-index: 0;
   margin-left: 10px;
@@ -191,6 +191,8 @@ h1 ,h2 ,h3 ,h4 ,h5 ,h6{
 .ads{
   cursor: pointer;
 }
+
+
 .cardLenge img{
   border-radius: 20px;
   width: 100%;
@@ -202,6 +204,10 @@ h1 ,h2 ,h3 ,h4 ,h5 ,h6{
   cursor: pointer;
   transition: 0.2s;
   border-radius: 10px;
+}
+
+.coupon-c{
+  background-color: #C2F9A3;
 }
 
 .coupon hr{

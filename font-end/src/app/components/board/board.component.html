@@ -4,6 +4,9 @@
     <div class="tutorial-overlay" *ngIf="tutorial == true">
       <board-howTo></board-howTo>
     </div>
+    <div class="tutorial-overlay" *ngIf="saveBoard == true">
+      <saveBoard></saveBoard>
+    </div>
     <div class="containerAll" cdkDropListGroup>
       <div class="container-board">
         <ul class="nav nav-tabs">
@@ -332,7 +335,7 @@
             <button class="btn btn_pts" (click)="clear_point()">
               <i class="fa-solid fa-xmark"></i>&ensp;Clear Poins
             </button>
-            <button class="btn btn_save" (click)="linkPage('/save_board')">
+            <button class="btn btn_save" (click)="showSaveBoard()">
               Complete Week!
             </button>
           </div>

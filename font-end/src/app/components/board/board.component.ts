@@ -42,10 +42,7 @@ export class Board {
     private sticker_service: StickerDataService
   ) {}
 
-  // ------------------------------------ Show tutorial-----------------------------------------------
-  get tutorial(){
-    return this.sticker_service.getshowtutorial();
-  }
+ 
 
   ngOnInit() {
     this.id = this.userDataService.getUserId();
@@ -104,9 +101,7 @@ export class Board {
       console.log('Guest : ', this.guest);
   }
 
-  showHow(){
-    this.sticker_service.setshowtutorial(true);
-  }
+  
   // ---------------------------------For guest-----------------------------------------
 
  
@@ -286,6 +281,24 @@ export class Board {
   }
   // ------------------------------------------------------------
 
+ // ------------------------------------ Show tutorial-----------------------------------------------
+  get tutorial(){
+    return this.sticker_service.getshowtutorial();
+  }
+  
+  showHow(){
+    this.sticker_service.setshowtutorial(true);
+  }
+
+  //----------------------------------------show save board----------------------------------------------------
+  get saveBoard(){
+    return this.userDataService.getSaveBoard();
+  }
+
+  showSaveBoard(){
+    this.userDataService.setSaveBoard(true);
+  }
+  //----------------------------------------------------------------------------
   dropSticker(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(

@@ -33,5 +33,17 @@ export class UserDataService {
     localStorage.removeItem(this.userIdKey);
   
   }
+
+    //--------------------------------- save board ---------------------------------
+
+    saveBoard = false;
+
+    getSaveBoard(){
+      return this.saveBoard
+    }
+  
+    setSaveBoard(show:boolean){
+      this.saveBoard = show;
+    }
    
 }

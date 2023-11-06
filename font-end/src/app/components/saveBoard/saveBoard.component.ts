@@ -275,9 +275,21 @@ export class SaveBoard {
         } catch (error) {
           console.error(error);
         }
-        this.clearBoard();
-        this.router.navigate(['/board']);
+        this.update();
+        // this.router.navigate(['/board']);
       }
     });
+  }
+
+  async update() {
+    await this.clearBoard();
+    this.close();
+    this.router.navigate(['/history']);
+  }
+  
+  
+
+  close(){
+    this.userDataService.setSaveBoard(false);
   }
 }

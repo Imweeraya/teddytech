@@ -4,10 +4,12 @@
 
   <body>
     <div class="save-container">
+      <div class="transparent-container sticky-center">
       <div class="save-card">
-        <button class="btn" routerLink="/board">
+        <!-- <button class="btn" routerLink="/board">
           <i class="fa-solid fa-caret-left"></i>&ensp;Back
-        </button>
+        </button> -->
+        <h2><i class="fa-solid fa-calendar-week"></i>&ensp;Complete Week !</h2>
         <div class="save-input">
           <label for="week"
             >Select week :&ensp;<input
@@ -29,6 +31,8 @@
           <button class="btn btn-save" (click)="saveAlert()">
             <i class="fa-solid fa-floppy-disk"></i>&ensp;Save!
           </button>
+          <div class="close-button" (click)="close()"><i class="fa-solid fa-circle-xmark"></i></div>
+        </div>
         </div>
       </div>
     </div>
