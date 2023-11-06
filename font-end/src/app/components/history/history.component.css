@@ -120,15 +120,14 @@ body{
     transition: 0.2s;
   }
 
-  /* reward.component.css */
 .pagination-container {
     text-align: center;
     margin-top: 5px;
   }
   
   .pagination-button {
-    background-color: #BB7979; /* Background color for the buttons */
-    color: #fff; /* Text color for the buttons */
+    background-color: #BB7979; 
+    color: #fff; 
     border: none;
     border-radius: 20px;
     padding: 8px 12px;
@@ -138,13 +137,12 @@ body{
   }
   
   .pagination-button:hover {
-    background-color: #d18b8b; /* Background color on hover */
+    background-color: #d18b8b;
   }
   
 
   .noHistory{
     color: #b57979;
     height: 90vh;
-    /* background-color: #8E3535; */
   }
   

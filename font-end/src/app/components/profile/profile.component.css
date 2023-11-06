@@ -19,11 +19,6 @@ h1 ,h2 ,h3 ,h4 ,h5 ,h6{
   border-radius: 15px;
   z-index: 0;
 }
-.cardLenge {
-  background-color:  #C2F9A3;
-  border-radius: 15px;
-  z-index: 0;
-}
 
 .circle {
   border-radius: 50%;
@@ -178,4 +173,64 @@ h1 ,h2 ,h3 ,h4 ,h5 ,h6{
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.container2{
+  display: flex;
+  width: 50%;
+}
+
+.cardLenge {
+  background-color:  #C2F9A3;
+  border-radius: 15px;
+  z-index: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.ads{
+  cursor: pointer;
+}
+.cardLenge img{
+  border-radius: 20px;
+  width: 100%;
+}
+
+.coupon{
+  width: 90%;
+  padding: 0px 5px 0px 5px;
+  cursor: pointer;
+  transition: 0.2s;
+  border-radius: 10px;
+}
+
+.coupon hr{
+  border: solid 2px rgb(62, 153, 62);
+  border-radius: 5px;
+}
+
+.coupon:hover{
+  background-color: #d5f8c2;
+  transition: 0.2s;
+}
+
+.pagination-container {
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.pagination-button {
+  background-color: #6fa74f;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 12px;
+  margin: 0 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination-button:hover {
+  background-color: #90ce6c;
 }

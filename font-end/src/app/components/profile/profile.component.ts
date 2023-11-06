@@ -144,4 +144,71 @@ export class ProfileComponent {
       }
     }
   }
+
+  //------------------------------------------------------------
+
+  slides = [
+    { image: '../../../assets/img/ads/ADS1.png' },
+    { image: '../../../assets/img/ads/ADS2.png' },
+    { image: '../../../assets/img/ads/ADS3.png' },
+    { image: '../../../assets/img/ads/ADS4.png' },
+    { image: '../../../assets/img/ads/ADS5.png' },
+    { image: '../../../assets/img/ads/ADS6.png' },
+    { image: '../../../assets/img/ads/ADS7.png' },
+    { image: '../../../assets/img/ads/ADS8.png' },
+  ];
+
+  coupons = [
+    {
+      shop: "Kiddo Toys",
+      product: "Action Figure",
+      discount: "20%",
+      details: "Get a 20% discount on action figures at Kiddo Toys with code 'kiddo20action'.",
+      code: "Teddytech512"
+    },
+    {
+      shop: "Super Playland",
+      product: "Playhouse",
+      discount: "15%",
+      details: "Enjoy 15% off on playhouses at Super Playland using code 'play15house'.",
+      code: "Teddy_tech222"
+    },
+    {
+      shop: "Sweet Treats for Kids",
+      product: "Candy Bag",
+      discount: "10%",
+      details: "Treat your kids with a 10% discount on candy bags at Sweet Treats for Kids with code 'kidscandy10'.",
+      code: "TeddytechSweet582"
+    },
+    {
+      shop: "Kids' Fashion World",
+      product: "Children's Clothes",
+      discount: "25%",
+      details: "Dress your little ones in style with 25% off on children's clothes at Kids' Fashion World using code 'kids25fashion'.",
+      code: "Teddytechkidy555"
+    }
+  ]
+
+    itemsPerPage: number = 1;
+    currentPage: number = 1;
+
+    getDataForPage(page: number): any[] {
+        const startIndex = (page - 1) * this.itemsPerPage;
+        const endIndex = startIndex + this.itemsPerPage;
+        return this.coupons.slice(startIndex, endIndex);
+      }
+    
+      changePage(offset: number): void {
+        this.currentPage += offset;
+      }
+    
+      get totalNumberOfPages(): number {
+        return Math.ceil(this.coupons.length / this.itemsPerPage);
+    }
+
+    getPageNumbers(): number[] {
+        return Array(this.totalNumberOfPages).fill(0).map((_, index) => index + 1);
+      }
+
+
 }
