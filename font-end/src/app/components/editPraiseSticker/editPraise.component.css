@@ -175,6 +175,10 @@ h3 {
   cursor: pointer;
 }
 
+.pagecount{
+  color: #ad8250;
+}
+
 /* ---------------------- change theme ----------------------------- */
 
 .changetheme_container {
@@ -258,27 +262,22 @@ h3 {
 
 /* ---------------------create feeling----------------------------- */
 
+
 .container-create {
+  margin: 25vh auto;
   width: 60%;
-  height: 60vh;
-  margin-top: 25vh;
-  margin-bottom: 25vh;
+  height: 350px;
   text-align: center;
   background-color: #ffe1cfd9;
-  display: flex;
-  align-items: center;
-  justify-content: start;
   border-radius: 50px;
-  flex-direction: column;
 }
 
-.enterName{
-  width: 60vw;
-  height: 25vh;
+.enterName {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 
 .enterName input{
   height: 50px;

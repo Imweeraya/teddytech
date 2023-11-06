@@ -37,8 +37,9 @@
         <div class="sticker addMore" (click)="create_stickerOnOff()">
           <i class="fa-solid fa-circle-plus"></i>
         </div>
-      </div>
-      <div class="d-flex justify-content-center my-1">
+      </div> 
+      <p class="my-0 pagecount" *ngIf="totalNumberOfPraisePages > 1">{{currentPage}}&ensp;/&ensp;{{totalNumberOfPraisePages}}</p>
+      <div class="d-flex justify-content-center my-0">
         <button
           *ngIf="currentPage > 1"
           (click)="changePage(-1)"
@@ -87,39 +88,39 @@
 
     <!-- ------------------------------- Create Sticker -------------------------------------- -->
 
-    <form (ngSubmit)="onSubmit()">
+    <form>
       <div class="container-create" *ngIf="createStickerOn === true">
         <h1>
-          Create Praise Sticker&ensp;<i class="fa-solid fa-circle-plus"></i>
+          Create Feeling Sticker&ensp;<i class="fa-solid fa-circle-plus"></i>
         </h1>
         <h3>
           <div class="row g-3 align-items-center enterName">
             <div class="col-auto">
-              <label class="col-form-label">Praise : </label>
+              <label class="col-form-label">Your feeling:</label>
             </div>
             <div class="col-auto">
               <input
                 type="text"
                 class="form-control"
-                placeholder="Enter praise"
+                placeholder="Enter feeling"
                 [(ngModel)]="praisegName"
                 [ngModelOptions]="{ standalone: true }"
                 maxlength="25"
               />
             </div>
             <div class="col-auto">
-              <span class="form-text"> 1 - 25 characters </span>
+              <span class="form-text">1 - 25 characters</span>
             </div>
-          </div>
-        </h3>
-
-        <div class="d-flex justify-content-center my-1 theme_button">
-          <button class="btn btn-cancel" (click)="create_stickerOnOff()">
-            Cancel
-          </button>
-          <button type="submit" class="btn btn-next">OK</button>
+          </div> <div class="d-flex justify-content-center my-5">
+          <button class="btn btn-cancel" (click)="create_stickerOnOff()">Cancel</button>
+          <button type="submit" class="btn btn-next" (click)="onSubmit();">OK</button>
         </div>
+        </h3>
+    
+       
       </div>
     </form>
+    
+
   </body>
 </html>

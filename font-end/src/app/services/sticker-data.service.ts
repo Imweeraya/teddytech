@@ -62,7 +62,7 @@ export class StickerDataService {
     '../../../assets/img/ActivityIcon/eat-rice.png',
     '../../../assets/img/ActivityIcon/break.png',
     '../../../assets/img/ActivityIcon/healthy.png',
-
+    
     '../../../assets/img/ActivityIcon/triangle.png',
     '../../../assets/img/ActivityIcon/triangle2.png',
     '../../../assets/img/ActivityIcon/exercise.png',

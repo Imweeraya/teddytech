@@ -170,6 +170,9 @@ h3 {
   cursor: pointer;
 }
 
+.pagecount{
+  color: #ad8250;
+}
 /* ---------------------- change theme ----------------------------- */
 
 .changetheme_container {

@@ -104,6 +104,7 @@ export class EditActivity {
     this.currentPage += offset;
   }
 
+
   get totalNumberOfActivityPages(): number {
     return Math.ceil(this.activityData.length / this.itemsPerPage);
   }

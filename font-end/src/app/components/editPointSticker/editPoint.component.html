@@ -36,7 +36,8 @@
           <i class="fa-solid fa-circle-plus"></i>
         </div>
       </div>
-      <div class="d-flex justify-content-center my-1">
+      <p class="my-0 pagecount" *ngIf="totalNumberOfPointPages > 1">{{currentPage}}&ensp;/&ensp;{{totalNumberOfPointPages}}</p>
+      <div class="d-flex justify-content-center my-0">
         <button
           *ngIf="currentPage > 1"
           (click)="changePage(-1)"
@@ -100,7 +101,8 @@
           ></div>
         </div>
 
-        <div class="d-flex justify-content-center my-1">
+        <p class="my-0 pagecount" *ngIf="totalNumberOfIconPages > 1">{{currentIconPage}}&ensp;/&ensp;{{totalNumberOfIconPages}}</p>
+        <div class="d-flex justify-content-center my-0">
           <button
             *ngIf="currentIconPage > 1"
             (click)="changeIconPage(-1)"
@@ -147,7 +149,8 @@
           ></div>
         </div>
 
-        <div class="d-flex justify-content-center my-1">
+        <p class="my-0 pagecount" *ngIf="totalNumberOfBgPages > 1">{{currentBgPage}}&ensp;/&ensp;{{totalNumberOfBgPages}}</p>
+        <div class="d-flex justify-content-center my-0">
           <button
             *ngIf="currentBgPage > 1"
             (click)="changeBgPage(-1)"
