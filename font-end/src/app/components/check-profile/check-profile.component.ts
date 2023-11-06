@@ -5,7 +5,7 @@ import { UserDataService } from 'src/app/services/user-data.service';
 @Component({
   selector: 'app-check-profile',
   templateUrl: './check-profile.component.html',
-  styleUrls: ['./check-profile.component.css']
+  styleUrls: ['./check-profile.component.css'],
 })
 export class CheckProfileComponent implements OnInit {
   username: boolean = false;
@@ -19,10 +19,10 @@ export class CheckProfileComponent implements OnInit {
   ngOnInit(): void {
     this.checkUserStatus();
   }
-  
+
   checkUserStatus() {
     const userId = this.userDataService.getUserId();
-  
+
     if (userId) {
       this.userRepository.getUserById(userId).subscribe((user) => {
         this.user = user;
@@ -30,4 +30,5 @@ export class CheckProfileComponent implements OnInit {
       });
     }
   }
+
 }
