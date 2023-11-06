@@ -34,6 +34,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { CheckProfileComponent } from './components/check-profile/check-profile.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { BoardHowTo } from './components/board-howTo/board-howTo.component';
+import { CouponDetail } from './components/couponDetail/couponDetail.component';
 
 
 
@@ -60,6 +61,7 @@ import { BoardHowTo } from './components/board-howTo/board-howTo.component';
     CheckProfileComponent,
     AboutmeComponent,
     ChoosePacketComponent,
+    CouponDetail
   ],
   imports: [
     CarouselModule.forRoot(),

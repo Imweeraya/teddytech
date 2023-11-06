@@ -4,6 +4,7 @@ import { ProfileService } from '../../services/auth-user.service';
 import { UserRepository } from '../../models/userModel/user.repository';
 import { UserDataService } from 'src/app/services/user-data.service';
 import Chart from 'chart.js/auto';
+import { CouponDataService } from 'src/app/services/coupon-data.service';
 
 @Component({
   selector: 'app-profile',
@@ -21,8 +22,11 @@ export class ProfileComponent {
   constructor(
     private userRepository: UserRepository,
     private profileStateService: ProfileService,
-    private userDataService: UserDataService
-  ) {}
+    private userDataService: UserDataService,
+    private couponData : CouponDataService
+  ) {
+    this.coupons = this.couponData.getcoupons();
+  }
   user: any = {};
   img: any = '';
   username: string = '';
@@ -158,36 +162,17 @@ export class ProfileComponent {
     { image: '../../../assets/img/ads/ADS8.png' },
   ];
 
-  coupons = [
-    {
-      shop: "Kiddo Toys",
-      product: "Action Figure",
-      discount: "20%",
-      details: "Get a 20% discount on action figures at Kiddo Toys with code 'kiddo20action'.",
-      code: "Teddytech512"
-    },
-    {
-      shop: "Super Playland",
-      product: "Playhouse",
-      discount: "15%",
-      details: "Enjoy 15% off on playhouses at Super Playland using code 'play15house'.",
-      code: "Teddy_tech222"
-    },
-    {
-      shop: "Sweet Treats for Kids",
-      product: "Candy Bag",
-      discount: "10%",
-      details: "Treat your kids with a 10% discount on candy bags at Sweet Treats for Kids with code 'kidscandy10'.",
-      code: "TeddytechSweet582"
-    },
-    {
-      shop: "Kids' Fashion World",
-      product: "Children's Clothes",
-      discount: "25%",
-      details: "Dress your little ones in style with 25% off on children's clothes at Kids' Fashion World using code 'kids25fashion'.",
-      code: "Teddytechkidy555"
-    }
-  ]
+  coupons: any[];
+  selectIndexCoupon = this.couponData.getCouponSelect();
+
+  get showDetail(){
+    return this.couponData.getShowDetail();
+  }
+  detail(index:number){
+    const chooseIndex = index+((this.currentPage-1)*this.itemsPerPage)
+    this.couponData.setCouponSelect(chooseIndex);
+    this.couponData.setShowDetail(true);
+  }
 
     itemsPerPage: number = 1;
     currentPage: number = 1;

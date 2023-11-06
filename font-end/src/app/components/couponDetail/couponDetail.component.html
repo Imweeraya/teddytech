@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="container">
+      <div class="transparent-container sticky-center coupon">
+            <h2 class="">{{coupon.shop}}</h2>
+            <img [src]="coupon.img" alt="Carousel Slide">
+            <h3> CODE : {{coupon.code}} </h3>
+            <h5>{{coupon.details}}</h5>
+            <h6>Please be aware that this coupon code is meant for single use only.</h6>
+          <div class="close-button" (click)="close()"><i class="fa-solid fa-circle-xmark"></i></div>
+      </div>
+    </div>
+  </body>
+</html>

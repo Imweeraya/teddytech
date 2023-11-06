@@ -1,0 +1,52 @@
+.container {
+    position: relative;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.sticky-center {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+.transparent-container{
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 30px;
+}
+
+
+.coupon{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.coupon img{
+    cursor: pointer;
+}
+
+.coupon h6{
+    color: #d65a5a;
+}
+
+  .close-button {
+    color: #919191;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 45px;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .close-button:hover {
+    color: #656565;
+    transition: 0.2s;
+  }
+  
+  
