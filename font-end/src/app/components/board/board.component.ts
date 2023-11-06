@@ -296,7 +296,26 @@ export class Board {
   }
 
   showSaveBoard(){
-    this.userDataService.setSaveBoard(true);
+    if (this.guest) {
+      Swal.fire({
+        imageUrl: 'https://media.tenor.com/9Ez46wr-voMAAAAC/lock.gif',
+        imageWidth: 249,
+        title: 'Sign In Now !',
+        text: 'To unlock More Features',
+        showCancelButton: true,
+        confirmButtonText: 'Sign In !',
+        cancelButtonText: 'No,thanks',
+        reverseButtons: true,
+        confirmButtonColor: '#A1C554',
+        cancelButtonColor: '#FC6F6F',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.router.navigate(['/signin']);
+        }
+      });
+    }else{
+      this.userDataService.setSaveBoard(true);
+    }
   }
   //----------------------------------------------------------------------------
   dropSticker(event: CdkDragDrop<string[]>) {
