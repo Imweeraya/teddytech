@@ -72,6 +72,14 @@ td{
   color: #6b8614;
   background-color: #cadd7d;
   border: solid 3px #9abb30;
+  transition: 0.2s;
+}
+
+.col-title.activity:hover {
+  color: #ffffff;
+  background-color: #a2b651;
+  border: solid 3px #9abb30;
+  transition: 0.2s;
 }
 
 .col-title.sun {

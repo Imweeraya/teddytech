@@ -37,7 +37,7 @@
         <div class="areaStick">
           <ul class="stickto">
             <li>
-              <div class="col-title activity">
+              <div class="col-title activity" (click)="selectedgenre = 'Activity'">
                 <p>Activity</p>
               </div>
               <div
@@ -83,7 +83,7 @@
           <!-- Monday -->
           <ul class="stickto">
             <li>
-              <div class="col-title mon" (click)="currentday = 1">
+              <div class="col-title mon" (click)="currentday = 1; selectedgenre = 'Point'">
                 <p>Mon.</p>
               </div>
               <div
@@ -118,7 +118,7 @@
           <!-- Tuesday -->
           <ul class="stickto">
             <li>
-              <div class="col-title tue" (click)="currentday = 2">
+              <div class="col-title tue" (click)="currentday = 2; selectedgenre = 'Point'">
                 <p>Tue.</p>
               </div>
               <div
@@ -153,7 +153,7 @@
           <!-- Wednesday -->
           <ul class="stickto">
             <li>
-              <div class="col-title wed" (click)="currentday = 3">
+              <div class="col-title wed" (click)="currentday = 3; selectedgenre = 'Point'">
                 <p>Wed.</p>
               </div>
               <div
@@ -188,7 +188,7 @@
           <!-- Thursday -->
           <ul class="stickto">
             <li>
-              <div class="col-title thu" (click)="currentday = 4">
+              <div class="col-title thu" (click)="currentday = 4; selectedgenre = 'Point'">
                 <p>Thu.</p>
               </div>
               <div
@@ -223,7 +223,7 @@
           <!-- Friday -->
           <ul class="stickto">
             <li>
-              <div class="col-title fri" (click)="currentday = 5">
+              <div class="col-title fri" (click)="currentday = 5; selectedgenre = 'Point'">
                 <p>Fri.</p>
               </div>
               <div
@@ -258,7 +258,7 @@
           <!-- Saturday -->
           <ul class="stickto">
             <li>
-              <div class="col-title sat" (click)="currentday = 6">
+              <div class="col-title sat" (click)="currentday = 6; selectedgenre = 'Point'">
                 <p>Sat.</p>
               </div>
               <div
@@ -293,7 +293,7 @@
           <!-- Sunday -->
           <ul class="stickto">
             <li>
-              <div class="col-title sun" (click)="currentday = 0">
+              <div class="col-title sun" (click)="currentday = 0; selectedgenre = 'Point'">
                 <p>Sun.</p>
               </div>
               <div
