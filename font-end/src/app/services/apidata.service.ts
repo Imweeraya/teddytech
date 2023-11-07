@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from '../models/userModel/user.model'; // Import your User model
+import { User } from '../models/userModel/user.model';
 
 
 @Injectable()
 export class ApiData {
-  private apiUrl = 'https://teddytech.azurewebsites.net/'; 
+  private apiUrl = 'https://teddytech.azurewebsites.net'; 
  
 
   constructor(private http: HttpClient) {}

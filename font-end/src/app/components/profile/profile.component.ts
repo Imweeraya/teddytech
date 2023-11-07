@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import { ProfileService } from '../../services/auth-user.service';
 import { UserRepository } from '../../models/userModel/user.repository';
 import { UserDataService } from 'src/app/services/user-data.service';
+import { StickerDataService } from 'src/app/services/sticker-data.service';
 import Chart from 'chart.js/auto';
 import { CouponDataService } from 'src/app/services/coupon-data.service';
 
@@ -20,6 +21,7 @@ export class ProfileComponent {
   targetValue2: number = 80;
 
   constructor(
+    private stickerService: StickerDataService,
     private userRepository: UserRepository,
     private profileStateService: ProfileService,
     private userDataService: UserDataService,
@@ -33,7 +35,11 @@ export class ProfileComponent {
   password: string = '';
   email: string = '';
   kid_name: string = '';
+  historyData: any[] = [];
+
   activityPoint: any[] = [];
+  startDate: string = '';
+  endDate: string = '';
 
   kid_age: number = 0;
   activitiesCount = 0;
@@ -55,6 +61,7 @@ export class ProfileComponent {
         this.kid_name = this.user.kid_name;
         this.activityPoint = this.user.activitySticked;
         this.stickersPoint = this.user.currentPoint;
+        this.historyData = this.user.stickerHistory;
         const totalStickers = [
           ...this.user.sunSticked,
           ...this.user.monSticked,
@@ -73,9 +80,8 @@ export class ProfileComponent {
           (sticker) => sticker.icon && sticker.icon !== ''
         ).length;
 
-        console.log(this.img);
-
-        this.createChart();
+        this.getHistoryValue();
+       
       });
 
     this.profileStateService.showEditProfile$.subscribe((showEditProfile) => {
@@ -93,45 +99,73 @@ export class ProfileComponent {
     this.profileStateService.updateShowEditProfile(true);
   }
 
-  addNewBoard() {
-    Swal.fire({
-      title: 'Board Full',
-      text: 'Your board is full. Please subscribe to add more boards.',
-      icon: 'error',
-    });
-  }
-
-  createChart() {
-    const xValues = ['Oct', 'Nov', 'Dec', 'Jan', 'Feb'];
-
+  getHistoryValue() {
+    const xValues = [];
+    const allPoints = [];
+    const rewardPointsA = [];
+    const rewardPointsB = [];
+    const activityCounts = [];
+    const historyCounts = [];
+  
+    for (let historyIndex = this.historyData.length-1; historyIndex >= 0; historyIndex--) {
+      const startDate = this.user.stickerHistory[historyIndex].startDate;
+      const endDate = this.user.stickerHistory[historyIndex].endDate;
+      const allpoint = this.user.stickerHistory[historyIndex].allpoint;
+      const rewardA = this.user.stickerHistory[historyIndex].rewardA.point;
+      const rewardB = this.user.stickerHistory[historyIndex].rewardB.point;
+      const activityHistory = this.user.stickerHistory[historyIndex].activitySticked;
+      const totalHistory = [
+        ...this.user.stickerHistory[historyIndex].sunSticked,
+        ...this.user.stickerHistory[historyIndex].monSticked,
+        ...this.user.stickerHistory[historyIndex].tueSticked,
+        ...this.user.stickerHistory[historyIndex].wedSticked,
+        ...this.user.stickerHistory[historyIndex].thuSticked,
+        ...this.user.stickerHistory[historyIndex].friSticked,
+        ...this.user.stickerHistory[historyIndex].satSticked,
+      ];
+  
+      const historyCount = totalHistory.filter(sticker => sticker.icon && sticker.icon !== '').length;
+      const activityHistoryCount = activityHistory.filter((a:any) => a.imageUrl && a.imageUrl.trim() !== '').length * 7;
+  
+      xValues.push(startDate); 
+      allPoints.push(allpoint);
+      rewardPointsA.push(rewardA);
+      rewardPointsB.push(rewardB);
+      activityCounts.push(activityHistoryCount);
+      historyCounts.push(historyCount);
+    }
+  
+    // Pass the collected data to create the chart
     const chartData = {
       labels: xValues,
       datasets: [
         {
-          label: 'Task',
-          data: [20, 15, 27, 19, 9],
+          label: 'All Points',
+          data: allPoints,
           borderColor: 'red',
           fill: false,
         },
         {
-          label: 'Done',
-          data: [3, 13, 23, 19, 6],
-          borderColor: 'green',
+          label: 'Activity Counts',
+          data: activityCounts,
+          borderColor: 'orange',
           fill: false,
         },
         {
-          label: 'Points',
-          data: [9, 30, 55, 54, 18],
-          borderColor: 'blue',
+          label: 'History Counts',
+          data: historyCounts,
+          borderColor: 'purple',
           fill: false,
         },
       ],
     };
-
-    const canvasElement = document.getElementById(
-      'myChart'
-    ) as HTMLCanvasElement;
-
+  
+    this.createChart(chartData);
+  }
+  
+  createChart(chartData:any) {
+    const canvasElement = document.getElementById('myChart') as HTMLCanvasElement;
+  
     if (canvasElement) {
       if (this.chart) {
         this.chart.data = chartData;
@@ -148,6 +182,7 @@ export class ProfileComponent {
       }
     }
   }
+  
 
   //------------------------------------------------------------
 
@@ -174,26 +209,26 @@ export class ProfileComponent {
     this.couponData.setShowDetail(true);
   }
 
-    itemsPerPage: number = 1;
-    currentPage: number = 1;
+  itemsPerPage: number = 1;
+  currentPage: number = 1;
 
-    getDataForPage(page: number): any[] {
-        const startIndex = (page - 1) * this.itemsPerPage;
-        const endIndex = startIndex + this.itemsPerPage;
-        return this.coupons.slice(startIndex, endIndex);
-      }
-    
-      changePage(offset: number): void {
-        this.currentPage += offset;
-      }
-    
-      get totalNumberOfPages(): number {
-        return Math.ceil(this.coupons.length / this.itemsPerPage);
-    }
+  getDataForPage(page: number): any[] {
+    const startIndex = (page - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.coupons.slice(startIndex, endIndex);
+  }
 
-    getPageNumbers(): number[] {
-        return Array(this.totalNumberOfPages).fill(0).map((_, index) => index + 1);
-      }
+  changePage(offset: number): void {
+    this.currentPage += offset;
+  }
 
+  get totalNumberOfPages(): number {
+    return Math.ceil(this.coupons.length / this.itemsPerPage);
+  }
 
+  getPageNumbers(): number[] {
+    return Array(this.totalNumberOfPages)
+      .fill(0)
+      .map((_, index) => index + 1);
+  }
 }
