@@ -17,15 +17,13 @@ export class ProfileComponent {
   showEditProfile: boolean = false;
   determinate1: number = 0;
   determinate2: number = 0;
-  targetValue1: number = 60;
-  targetValue2: number = 80;
 
   constructor(
     private stickerService: StickerDataService,
     private userRepository: UserRepository,
     private profileStateService: ProfileService,
     private userDataService: UserDataService,
-    private couponData : CouponDataService
+    private couponData: CouponDataService
   ) {
     this.coupons = this.couponData.getcoupons();
   }
@@ -40,7 +38,8 @@ export class ProfileComponent {
   activityPoint: any[] = [];
   startDate: string = '';
   endDate: string = '';
-
+  historyCountNum: number = 0;
+  activityHistoryCountNum: number = 0;
   kid_age: number = 0;
   activitiesCount = 0;
   stickersCount = 0;
@@ -48,7 +47,6 @@ export class ProfileComponent {
   rewardCount = 0;
 
   ngOnInit(): void {
-    // Fetch the user data when the component initializes
     this.userRepository
       .getUserById(this.userDataService.getUserId())
       .subscribe((user) => {
@@ -71,28 +69,21 @@ export class ProfileComponent {
           ...this.user.friSticked,
           ...this.user.satSticked,
         ];
-
-        this.activitiesCount = this.activityPoint.filter(
-          (a: any) => a.imageUrl && a.imageUrl.trim() !== ''
-        ).length;
-
+        this.activitiesCount =
+          this.activityPoint.filter(
+            (a: any) => a.imageUrl && a.imageUrl.trim() !== ''
+          ).length * 7;
         this.stickersCount = totalStickers.filter(
           (sticker) => sticker.icon && sticker.icon !== ''
         ).length;
 
         this.getHistoryValue();
-       
+        this.calcuTask();
       });
 
     this.profileStateService.showEditProfile$.subscribe((showEditProfile) => {
       this.showEditProfile = showEditProfile;
     });
-    setInterval(() => {
-      this.determinate1 = this.targetValue1;
-    }, 500);
-    setInterval(() => {
-      this.determinate2 = this.targetValue2;
-    }, 600);
   }
 
   editProfile(): void {
@@ -106,14 +97,14 @@ export class ProfileComponent {
     const rewardPointsB = [];
     const activityCounts = [];
     const historyCounts = [];
-  
-    for (let historyIndex = this.historyData.length-1; historyIndex >= 0; historyIndex--) {
+
+    for (let historyIndex = 0; historyIndex < Math.max(7,0); historyIndex++) {
       const startDate = this.user.stickerHistory[historyIndex].startDate;
-      const endDate = this.user.stickerHistory[historyIndex].endDate;
       const allpoint = this.user.stickerHistory[historyIndex].allpoint;
       const rewardA = this.user.stickerHistory[historyIndex].rewardA.point;
       const rewardB = this.user.stickerHistory[historyIndex].rewardB.point;
-      const activityHistory = this.user.stickerHistory[historyIndex].activitySticked;
+      const activityHistory =
+        this.user.stickerHistory[historyIndex].activitySticked;
       const totalHistory = [
         ...this.user.stickerHistory[historyIndex].sunSticked,
         ...this.user.stickerHistory[historyIndex].monSticked,
@@ -123,49 +114,60 @@ export class ProfileComponent {
         ...this.user.stickerHistory[historyIndex].friSticked,
         ...this.user.stickerHistory[historyIndex].satSticked,
       ];
-  
-      const historyCount = totalHistory.filter(sticker => sticker.icon && sticker.icon !== '').length;
-      const activityHistoryCount = activityHistory.filter((a:any) => a.imageUrl && a.imageUrl.trim() !== '').length * 7;
-  
-      xValues.push(startDate); 
-      allPoints.push(allpoint);
-      rewardPointsA.push(rewardA);
-      rewardPointsB.push(rewardB);
-      activityCounts.push(activityHistoryCount);
-      historyCounts.push(historyCount);
+
+      const historyCount = totalHistory.filter(
+        (sticker) => sticker.icon && sticker.icon !== ''
+      ).length;
+      const activityHistoryCount =
+        activityHistory.filter(
+          (a: any) => a.imageUrl && a.imageUrl.trim() !== ''
+        ).length * 7;
+      this.historyCountNum = +historyCount;
+      this.activityHistoryCountNum = +activityHistoryCount;
+      const dateObj = new Date(startDate);
+      const formattedDate = dateObj.toLocaleDateString('en-US', {
+        day: 'numeric',
+        month: 'short',
+      });
+      xValues.unshift(formattedDate);
+      allPoints.unshift(allpoint);
+      activityCounts.unshift(activityHistoryCount);
+      historyCounts.unshift(historyCount);
     }
-  
-    // Pass the collected data to create the chart
+
     const chartData = {
       labels: xValues,
       datasets: [
         {
-          label: 'All Points',
+          label: 'Points',
           data: allPoints,
-          borderColor: 'red',
+          borderColor: 'pink', // Change the color to pink
           fill: false,
         },
         {
-          label: 'Activity Counts',
+          label: 'Activity',
           data: activityCounts,
-          borderColor: 'orange',
+          borderColor: 'skyblue', // Change the color to sky blue
           fill: false,
         },
         {
-          label: 'History Counts',
+          label: 'Done',
           data: historyCounts,
-          borderColor: 'purple',
+          borderColor: 'lightgreen', // Change the color to light green
           fill: false,
         },
       ],
     };
-  
+    
+
     this.createChart(chartData);
   }
-  
-  createChart(chartData:any) {
-    const canvasElement = document.getElementById('myChart') as HTMLCanvasElement;
-  
+
+  createChart(chartData: any) {
+    const canvasElement = document.getElementById(
+      'myChart'
+    ) as HTMLCanvasElement;
+
     if (canvasElement) {
       if (this.chart) {
         this.chart.data = chartData;
@@ -180,6 +182,28 @@ export class ProfileComponent {
           },
         });
       }
+    }
+  }
+
+  calcuTask() {
+    setInterval(() => {
+      this.determinate1 = Math.floor((this.stickersCount / this.activitiesCount) * 100);
+    }, 300);
+    
+    setInterval(() => {
+      this.determinate2 = Math.floor((this.historyCountNum / this.activityHistoryCountNum) * 100);
+    }, 400);
+  }
+
+  getProgressBarColor(percentage: number) {
+    if (percentage < 25) {
+      return 'lightpink';
+    } else if (percentage < 50) {
+      return 'lightsalmon';
+    } else if (percentage < 75) {
+      return 'lightyellow';
+    } else {
+      return 'lightgreen';
     }
   }
   
@@ -200,11 +224,11 @@ export class ProfileComponent {
   coupons: any[];
   selectIndexCoupon = this.couponData.getCouponSelect();
 
-  get showDetail(){
+  get showDetail() {
     return this.couponData.getShowDetail();
   }
-  detail(index:number){
-    const chooseIndex = index+((this.currentPage-1)*this.itemsPerPage)
+  detail(index: number) {
+    const chooseIndex = index + (this.currentPage - 1) * this.itemsPerPage;
     this.couponData.setCouponSelect(chooseIndex);
     this.couponData.setShowDetail(true);
   }

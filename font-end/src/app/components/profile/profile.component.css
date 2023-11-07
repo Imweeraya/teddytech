@@ -1,4 +1,3 @@
-
 .transparent-container {
   background-color: rgba(255, 255, 255, 0.448); /* Transparent white */
   padding: 50px;
@@ -6,16 +5,21 @@
   border-radius: 15px;
   margin-top: 100px;
 }
-h1 ,h2 ,h3 ,h4 ,h5 ,h6{
-  color: #466B22;;
-   }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #466b22;
+}
 .cardProfile {
-  background-color:#C2F9A3;
+  background-color: #c2f9a3;
   border-radius: 15px;
   z-index: 0;
 }
 .cardMedium {
-  background-color: #C2F9A3;
+  background-color: #c2f9a3;
   border-radius: 15px;
   z-index: 0;
 }
@@ -40,7 +44,7 @@ h1 ,h2 ,h3 ,h4 ,h5 ,h6{
   height: 35px;
 }
 
-.name h5{
+.name h5 {
   padding: 5px 0 0 8px;
 }
 
@@ -82,14 +86,12 @@ h1 ,h2 ,h3 ,h4 ,h5 ,h6{
   padding: 4px 15px 4px 15px;
 }
 
-
-
 .edit-profile-overlay {
   position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-   
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   width: 100%;
   height: 100%;
   z-index: 999;
@@ -99,7 +101,6 @@ h1 ,h2 ,h3 ,h4 ,h5 ,h6{
 .pointer-cursor {
   cursor: pointer;
 }
-
 
 .ring {
   display: flex;
@@ -124,7 +125,7 @@ h1 ,h2 ,h3 ,h4 ,h5 ,h6{
   left: 0;
 }
 
-.progress-ring>span {
+.progress-ring > span {
   width: 50%;
   height: 100%;
   overflow: hidden;
@@ -175,30 +176,29 @@ h1 ,h2 ,h3 ,h4 ,h5 ,h6{
   left: 0;
 }
 
-.container2{
+.container2 {
   display: flex;
   width: 50%;
 }
 
 .cardLenge {
-  background-color:  none;
+  background-color: none;
   border-radius: 15px;
   z-index: 0;
   margin-left: 10px;
   margin-right: 10px;
 }
 
-.ads{
+.ads {
   cursor: pointer;
 }
 
-
-.cardLenge img{
+.cardLenge img {
   border-radius: 20px;
   width: 100%;
 }
 
-.coupon{
+.coupon {
   width: 90%;
   padding: 0px 5px 0px 5px;
   cursor: pointer;
@@ -206,16 +206,16 @@ h1 ,h2 ,h3 ,h4 ,h5 ,h6{
   border-radius: 10px;
 }
 
-.coupon-c{
-  background-color: #C2F9A3;
+.coupon-c {
+  background-color: #c2f9a3;
 }
 
-.coupon hr{
+.coupon hr {
   border: solid 2px rgb(62, 153, 62);
   border-radius: 5px;
 }
 
-.coupon:hover{
+.coupon:hover {
   background-color: #d5f8c2;
   transition: 0.2s;
 }
