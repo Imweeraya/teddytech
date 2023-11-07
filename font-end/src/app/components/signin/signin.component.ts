@@ -1,9 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserRepository } from '../../models/userModel/user.repository';
 import Swal from 'sweetalert2';
@@ -29,9 +24,6 @@ export class Signin {
     private userRepository: UserRepository,
     private router: Router
   ) {}
-
-
-    
 
   toggleChangeClass() {
     const mainContainer =
@@ -137,4 +129,5 @@ export class Signin {
       }
     });
   }
+
 }

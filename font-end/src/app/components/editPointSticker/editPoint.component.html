@@ -57,7 +57,7 @@
 
     <!-- ------------------------------- Create Sticker -------------------------------------- -->
 
-    <form (ngSubmit)="next()">
+    <form>
       <div class="container-create" *ngIf="createStickerOn1 === true">
         <h1>
           Create Point Sticker&ensp;<i class="fa-solid fa-circle-plus"></i>
@@ -123,7 +123,7 @@
           <button class="btn btn-cancel" (click)="create_stickerOnOff1()">
             Cancel
           </button>
-          <button class="btn btn-next" type="submit">Next</button>
+          <button class="btn btn-next" type="submit" (click)="next()">Next</button>
         </div>
       </div>
     </form>
