@@ -139,47 +139,75 @@ export class StickerDataService {
     ];
 
     //--------------------------- Point----------------------------
-    this.pointBg = [
+    this.pointBg =  [
       '../../../assets/img/PointSticker/Bg/Bgpoint6.png',
       '../../../assets/img/PointSticker/Bg/Bgpoint1.png',
       '../../../assets/img/PointSticker/Bg/Bgpoint7.png',
-
+  
       '../../../assets/img/PointSticker/Bg/Bgpoint8.png',
       '../../../assets/img/PointSticker/Bg/Bgpoint10.png',
       '../../../assets/img/PointSticker/Bg/Bgpoint11.png',
-
+  
       '../../../assets/img/PointSticker/Bg/Bgpoint26.png',
       '../../../assets/img/PointSticker/Bg/Bgpoint2.png',
-
+      '../../../assets/img/PointSticker/Bg/Bgp24.png',
+      '../../../assets/img/PointSticker/Bg/Bgp25.png',
+  
       '../../../assets/img/PointSticker/Bg/Bgpoint12.png',
+      '../../../assets/img/PointSticker/Bg/Bgp28.png',
+      '../../../assets/img/PointSticker/Bg/Bgp29.png',
+  
+      '../../../assets/img/PointSticker/Bg/Bgp27.png',
       '../../../assets/img/PointSticker/Bg/Bgpoint13.png',
-
       '../../../assets/img/PointSticker/Bg/Bgpoint14.png',
+      '../../../assets/img/PointSticker/Bg/Bgp2.png',
+      '../../../assets/img/PointSticker/Bg/Bgp3.png',
+      '../../../assets/img/PointSticker/Bg/Bgp4.png',
+      '../../../assets/img/PointSticker/Bg/Bgp5.png',
+  
+      '../../../assets/img/PointSticker/Bg/Bgp12.png',
+      '../../../assets/img/PointSticker/Bg/Bgp13.png',
+      '../../../assets/img/PointSticker/Bg/Bgp14.png',
       '../../../assets/img/PointSticker/Bg/Bgpoint15.png',
-
       '../../../assets/img/PointSticker/Bg/Bgpoint16.png',
       '../../../assets/img/PointSticker/Bg/Bgpoint17.png',
+      '../../../assets/img/PointSticker/Bg/Bgp26.png',
       '../../../assets/img/PointSticker/Bg/Bgpoint18.png',
-
       '../../../assets/img/PointSticker/Bg/Bgpoint4.png',
       '../../../assets/img/PointSticker/Bg/Bgpoint19.png',
+      '../../../assets/img/PointSticker/Bg/Bgp9.png',
+      '../../../assets/img/PointSticker/Bg/Bgp10.png',
+      '../../../assets/img/PointSticker/Bg/Bgp11.png',
       '../../../assets/img/PointSticker/Bg/Bgpoint20.png',
-
       '../../../assets/img/PointSticker/Bg/Bgpoint21.png',
       '../../../assets/img/PointSticker/Bg/Bgpoint22.png',
+  
       '../../../assets/img/PointSticker/Bg/Bgpoint23.png',
       '../../../assets/img/PointSticker/Bg/Bgpoint24.png',
-
       '../../../assets/img/PointSticker/Bg/Bgpoint25.png',
-
+      '../../../assets/img/PointSticker/Bg/Bgp6.png',
+      '../../../assets/img/PointSticker/Bg/Bgp7.png',
+      '../../../assets/img/PointSticker/Bg/Bgp8.png',
+      
+      '../../../assets/img/PointSticker/Bg/Bgp19.png',
+      '../../../assets/img/PointSticker/Bg/Bgp16.png',
       '../../../assets/img/PointSticker/Bg/Bgpoint27.png',
-      '../../../assets/img/PointSticker/Bg/Bgpoint28.png',
-      '../../../assets/img/PointSticker/Bg/Bgpoint29.png',
       '../../../assets/img/PointSticker/Bg/Bgpoint30.png',
+      '../../../assets/img/PointSticker/Bg/Bgp22.png',
+      '../../../assets/img/PointSticker/Bg/Bgp15.png',
       '../../../assets/img/PointSticker/Bg/Bgpoint31.png',
+      '../../../assets/img/PointSticker/Bg/Bgp23.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint28.png',
+      '../../../assets/img/PointSticker/Bg/Bgp20.png',
+      '../../../assets/img/PointSticker/Bg/Bgp17.png',
+      '../../../assets/img/PointSticker/Bg/Bgp1.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint29.png',
+      '../../../assets/img/PointSticker/Bg/Bgp21.png',
       '../../../assets/img/PointSticker/Bg/Bgpoint3.png',
       '../../../assets/img/PointSticker/Bg/Bgpoint5.png',
+      '../../../assets/img/PointSticker/Bg/Bgp18.png',
     ];
+
     this.pointIcon = [
       '../../../assets/img/PointSticker/Icon/heart2.png',
     '../../../assets/img/PointSticker/Icon/hearts.png',

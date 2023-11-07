@@ -6,12 +6,10 @@
 
 
 body {
-    background-image: url('assets/BG.png');
-    
+    background-image: url('assets/BGnew.png');
     background-size: cover;
-    
     background-position: center;
-   
     background-repeat: no-repeat;
-  }
+}
+
 
