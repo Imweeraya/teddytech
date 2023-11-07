@@ -17,9 +17,9 @@ export class ProfileComponent {
   showEditProfile: boolean = false;
   determinate1: number = 0;
   determinate2: number = 0;
+  check: number = 0;
 
   constructor(
-    private stickerService: StickerDataService,
     private userRepository: UserRepository,
     private profileStateService: ProfileService,
     private userDataService: UserDataService,
@@ -34,6 +34,13 @@ export class ProfileComponent {
   email: string = '';
   kid_name: string = '';
   historyData: any[] = [];
+  pointA: number = 0;
+  pointB: number = 0;
+  currentPoint: number = 0;
+  xValues: any = [];
+  allPoints: any = [];
+  activityCounts: any = [];
+  historyCounts: any = [];
 
   activityPoint: any[] = [];
   startDate: string = '';
@@ -60,6 +67,10 @@ export class ProfileComponent {
         this.activityPoint = this.user.activitySticked;
         this.stickersPoint = this.user.currentPoint;
         this.historyData = this.user.stickerHistory;
+        this.pointA = this.user.pointA;
+        this.pointB = this.user.pointB;
+        this.currentPoint = this.user.currentPoint;
+
         const totalStickers = [
           ...this.user.sunSticked,
           ...this.user.monSticked,
@@ -69,6 +80,12 @@ export class ProfileComponent {
           ...this.user.friSticked,
           ...this.user.satSticked,
         ];
+        if (this.pointA <= this.stickersPoint) {
+          this.rewardCount = this.rewardCount + 1;
+        }
+        if (this.pointB <= this.stickersPoint) {
+          this.rewardCount = this.rewardCount + 1;
+        }
         this.activitiesCount =
           this.activityPoint.filter(
             (a: any) => a.imageUrl && a.imageUrl.trim() !== ''
@@ -76,6 +93,18 @@ export class ProfileComponent {
         this.stickersCount = totalStickers.filter(
           (sticker) => sticker.icon && sticker.icon !== ''
         ).length;
+
+        if (this.activitiesCount !== 0) {
+          this.xValues.unshift('Now');
+          this.activityCounts.unshift(this.activitiesCount);
+          if (this.currentPoint !== 0) {
+            this.allPoints.unshift(this.currentPoint);
+          }
+          if (this.stickersCount !== 0) {
+            this.historyCounts.unshift(this.stickersCount);
+          }
+        }
+       
 
         this.getHistoryValue();
         this.calcuTask();
@@ -91,14 +120,11 @@ export class ProfileComponent {
   }
 
   getHistoryValue() {
-    const xValues = [];
-    const allPoints = [];
-    const rewardPointsA = [];
-    const rewardPointsB = [];
-    const activityCounts = [];
-    const historyCounts = [];
-
-    for (let historyIndex = 0; historyIndex < Math.max(7,0); historyIndex++) {
+    for (
+      let historyIndex = 0;
+      historyIndex < this.historyData.length;
+      historyIndex++
+    ) {
       const startDate = this.user.stickerHistory[historyIndex].startDate;
       const allpoint = this.user.stickerHistory[historyIndex].allpoint;
       const rewardA = this.user.stickerHistory[historyIndex].rewardA.point;
@@ -115,6 +141,13 @@ export class ProfileComponent {
         ...this.user.stickerHistory[historyIndex].satSticked,
       ];
 
+      if (rewardA <= allpoint) {
+        this.rewardCount = this.rewardCount + 1;
+      }
+      if (rewardB <= allpoint) {
+        this.rewardCount = this.rewardCount + 1;
+      }
+
       const historyCount = totalHistory.filter(
         (sticker) => sticker.icon && sticker.icon !== ''
       ).length;
@@ -122,43 +155,47 @@ export class ProfileComponent {
         activityHistory.filter(
           (a: any) => a.imageUrl && a.imageUrl.trim() !== ''
         ).length * 7;
-      this.historyCountNum = +historyCount;
-      this.activityHistoryCountNum = +activityHistoryCount;
-      const dateObj = new Date(startDate);
-      const formattedDate = dateObj.toLocaleDateString('en-US', {
-        day: 'numeric',
-        month: 'short',
-      });
-      xValues.unshift(formattedDate);
-      allPoints.unshift(allpoint);
-      activityCounts.unshift(activityHistoryCount);
-      historyCounts.unshift(historyCount);
+      this.historyCountNum = this.historyCountNum + historyCount;
+      this.activityHistoryCountNum =
+        this.activityHistoryCountNum + activityHistoryCount;
+
+      if (this.check < 6) {
+        const dateObj = new Date(startDate);
+        const formattedDate = dateObj.toLocaleDateString('en-US', {
+          day: 'numeric',
+          month: 'short',
+        });
+        this.xValues.unshift(formattedDate);
+        this.allPoints.unshift(allpoint);
+        this.activityCounts.unshift(activityHistoryCount);
+        this.historyCounts.unshift(historyCount);
+        this.check = this.check + 1;
+      }
     }
 
     const chartData = {
-      labels: xValues,
+      labels: this.xValues,
       datasets: [
         {
-          label: 'Points',
-          data: allPoints,
-          borderColor: 'pink', // Change the color to pink
-          fill: false,
-        },
-        {
           label: 'Activity',
-          data: activityCounts,
+          data: this.activityCounts,
           borderColor: 'skyblue', // Change the color to sky blue
-          fill: false,
+          fill: true,
         },
         {
           label: 'Done',
-          data: historyCounts,
+          data: this.historyCounts,
           borderColor: 'lightgreen', // Change the color to light green
+          fill: false,
+        },
+        {
+          label: 'Points',
+          data: this.allPoints,
+          borderColor: 'pink', // Change the color to pink
           fill: false,
         },
       ],
     };
-    
 
     this.createChart(chartData);
   }
@@ -187,11 +224,15 @@ export class ProfileComponent {
 
   calcuTask() {
     setInterval(() => {
-      this.determinate1 = Math.floor((this.stickersCount / this.activitiesCount) * 100);
+      this.determinate1 = Math.floor(
+        (this.stickersCount / this.activitiesCount) * 100
+      );
     }, 300);
-    
+
     setInterval(() => {
-      this.determinate2 = Math.floor((this.historyCountNum / this.activityHistoryCountNum) * 100);
+      this.determinate2 = Math.floor(
+        (this.historyCountNum / this.activityHistoryCountNum) * 100
+      );
     }, 400);
   }
 
@@ -206,7 +247,6 @@ export class ProfileComponent {
       return 'lightgreen';
     }
   }
-  
 
   //------------------------------------------------------------
 
