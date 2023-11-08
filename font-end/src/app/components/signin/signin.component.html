@@ -42,21 +42,22 @@
               class="col-7"
               required
             />
-
             <input
-              type="number"
-              placeholder="Kid Age"
-              [(ngModel)]="kid_age"
-              name="kidAge"
-              class="mx-4 col-2"
-              required
-            />
-
-            <img src="../../../assets/img/BgSticker/Diamon4.png" style="width: 50px; height: 50px;" (click)="packChange()">
-
-          </div>
-
+            type="number"
+            placeholder="Kid Age"
+            [(ngModel)]="kid_age"
+            name="kidAge"
+            class="mx-4 col-2"
+            required
+          />
           
+
+            <img
+              src="../../../assets/img/BgSticker/Diamon4.png"
+              style="width: 50px; height: 50px"
+              (click)="packChange()"
+            />
+          </div>
 
           <button type="submit">Signup</button>
         </form>
@@ -118,25 +119,34 @@
   </div>
 </body>
 
-
-
 <div class="sticky-center" *ngIf="pack">
-  <div class="col-lg-12 cardProfile" #containerElement>
-    <div class="row text-center justify-content-center">
-      <div class="col-6 preschool" #preschoolSection (click)="changeBackgroundColor('preschoolSection')">
-        <h3 class="my-4">PreSchool</h3>
-        <img src="../../../assets/img/BgSticker/Diamon4.png" class="" width="100px" height="100px" />
-        <h6 class="mt-4">basic sticker for kids</h6>
+<div class="containerChoose p-4">
+  <h1 class="text-center ">Choose a package for your kid</h1>
+
+  <div class="col-12 mt-4">
+    <div class="row">
+      <div class="col-6">
+        <label>
+          <input type="radio" name="product" class="card-input-element" (change)="setPackage(0)" [checked]="package === 0"/>
+          <div class="card card-input">
+            <div class="card-header">Preschool</div>
+            <div class="card-body">Basic education for preschoolers.</div>
+          </div>
+        </label>
       </div>
 
-      <div class="col-6 primaryschool" #primaryschoolSection (click)="changeBackgroundColor('primaryschoolSection')">
-        <h3 class="my-4">PrimarySchool</h3>
-        <img src="../../../assets/img/BgSticker/Diamon4.png" class="" width="100px" height="100px" />
-        <h6 class="mt-4">Advarcrt sticker for kids</h6>
+      <div class="col-6 ">
+        <label>
+          <input type="radio" name="product" class="card-input-element" (change)="setPackage(1)" [checked]="package === 1" />
+          <div class="card card-input">
+            <div class="card-header">Primary School</div>
+            <div class="card-body">
+              Advanced education for primary school students.
+            </div>
+          </div>
+        </label>
       </div>
     </div>
   </div>
+  </div>
 </div>
-
-
-

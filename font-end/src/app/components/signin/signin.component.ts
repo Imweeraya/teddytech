@@ -46,6 +46,12 @@ export class Signin {
 
   packChange() {
     this.pack = !this.pack;
+    console.log(this.pack);
+  }
+
+  setPackage(value:number){
+    this.package = value;
+    console.log('Selected Package:', this.package);
   }
 
   login() {
