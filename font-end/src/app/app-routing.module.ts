@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'history', component: History },
   { path: 'history_board', component: HistoryBoard },
   { path: 'aboutme', component: AboutmeComponent},
-  { path: '**', redirectTo: '/board' },
+  { path: '**', redirectTo: '/home' },
 
 ];
 
