@@ -64,13 +64,17 @@ export class Signin {
     } else {
       console.log('ERROR: Login failed');
       Swal.fire({
-        icon: 'error',
-        title: 'Incorrect',
-        text: 'Incorrect username or password',
-        confirmButtonColor: '#A1C554',
-      });
-    }
-  }
+        imageUrl: 'https://storage.googleapis.com/sticker-prod/k5Munc6RC0etp2SV8Qtp/28-1.thumb128.webp',
+        imageWidth: 150,
+        title: 'ERROR: Failed!! Sign-In Unsuccessful...',
+        text: 'Please login again',
+        confirmButtonText: 'Try again!',
+        reverseButtons: true,
+        confirmButtonColor: '#FC6F6F',
+    });
+  
+  
+}}
 
   ///[บัค]
   register() {
@@ -95,11 +99,14 @@ export class Signin {
     } else {
       console.log('ERROR: registration is failed');
       Swal.fire({
-        icon: 'error',
-        title: '',
-        text: 'Please try again',
-        confirmButtonColor: '#A1C554',
-      });
+        imageUrl: 'https://storage.googleapis.com/sticker-prod/k5Munc6RC0etp2SV8Qtp/28-1.thumb128.webp',
+        imageWidth: 150,
+        title: 'ERROR: Failed!! Sign-Up Unsuccessful... ',
+        text: 'Please Sign-Up again',
+        confirmButtonText: 'Try again!',
+        reverseButtons: true,
+        confirmButtonColor: '#FC6F6F',
+    });
     }
   }
 
