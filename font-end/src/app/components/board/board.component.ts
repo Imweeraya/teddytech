@@ -579,7 +579,7 @@ export class Board {
             };
             this.calculate_point(stickerIndex);
             if (!this.guest) {
-              this.updateThuData();
+              this.updateTueData();
             }
             break;
           }
