@@ -24,6 +24,7 @@ export class Board {
   selectedgenre: string = 'Activity';
   addBg = '';
   itemsPerPage: number = 15;
+  itemsPointPerPage: number = 12;
   currentPage: number = 1;
 
   activityData: any[] = [];
@@ -407,6 +408,7 @@ export class Board {
   }
 
   addActivity(index: number) {
+    console.log(index);
     const stickerIndex = index + (this.currentPage - 1) * this.itemsPerPage;
     for (let i = 0; i < this.activity_sticked.length; i++) {
       if (!this.activity_sticked[i].imageUrl) {
@@ -435,13 +437,13 @@ export class Board {
   // --------------------------------Point Sticker---------------------------------------------
 
   getPointDataForPage(page: number): any[] {
-    const startIndex = (page - 1) * 12;
-    const endIndex = startIndex + 12;
+    const startIndex = (page - 1) * this.itemsPointPerPage;
+    const endIndex = startIndex + this.itemsPointPerPage;
     return this.pointData.slice(startIndex, endIndex);
   }
 
   get totalNumberOfPointPages(): number {
-    return Math.ceil(this.pointData.length / 12);
+    return Math.ceil(this.pointData.length / this.itemsPointPerPage);
   }
 
   updateSunData() {
@@ -535,7 +537,8 @@ export class Board {
   currentday = 1;
 
   addPoint(index: number) {
-    const stickerIndex = index + (this.currentPage - 1) * this.itemsPerPage;
+    console.log(index);
+    const stickerIndex = index + (this.currentPage - 1) * this.itemsPointPerPage;
     switch (this.currentday) {
       case 0:
         for (let i = 0; i < this.sun_sticked.length; i++) {
