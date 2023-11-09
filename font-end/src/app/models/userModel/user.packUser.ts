@@ -10,8 +10,8 @@ packUsers = [{
     password: "1234",
     kid_name: "TinyJunior",
     kid_age: 3,
-    pointA: 0,
-    pointB: 0,
+    pointA: 10,
+    pointB: 20,
     currentPoint: 0,
     activityTheme: {
       font: "#3F5236",
@@ -346,7 +346,8 @@ packUsers = [{
     password: "1234",
     kid_name: "Junior",
     kid_age: 7,
-    pointB: 0,
+    pointA: 10,
+    pointB: 20,
     currentPoint: 0,
     activityTheme: {
       font: "#3F5236",
