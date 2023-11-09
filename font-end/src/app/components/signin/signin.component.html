@@ -39,25 +39,36 @@
               placeholder="Kid Name"
               [(ngModel)]="kid_name"
               name="kidName"
-              class="col-7"
+              class="col-8"
               required
             />
             <input
-            type="number"
-            placeholder="Kid Age"
-            [(ngModel)]="kid_age"
-            name="kidAge"
-            class="mx-4 col-2"
-            required
-          />
-          
-
-            <img
-              src="../../../assets/img/BgSticker/Diamon4.png"
-              style="width: 50px; height: 50px"
-              (click)="packChange()"
+              type="number"
+              placeholder="Kid Age"
+              [(ngModel)]="kid_age"
+              name="kidAge"
+              class="mx-4 col-2"
+              required
             />
-          </div>
+          
+          
+              <img
+                *ngIf="kid_age >= 0 && kid_age <= 5"
+                src="../../../assets/Preschool.png"
+                style="width: 55px; height: 55px; margin-top: 10px;"
+                (click)="onImageClick(0)"
+              />
+          
+              <img
+                *ngIf="kid_age > 5"
+                src="../../../assets/Primary_School.png"
+                style="width: 55px; height: 55px; margin-top: 10px;"
+                (click)="onImageClick(1)"
+                
+              />
+            </div>
+          
+          
 
           <button type="submit">Signup</button>
         </form>
@@ -120,33 +131,49 @@
 </body>
 
 <div class="sticky-center" *ngIf="pack">
-<div class="containerChoose p-4">
-  <h1 class="text-center ">Choose a package for your kid</h1>
+  <div class="containerChoose p-4">
+    <h1 class="text-center">Choose a package for your kid</h1>
 
-  <div class="col-12 mt-4">
-    <div class="row">
-      <div class="col-6">
-        <label>
-          <input type="radio" name="product" class="card-input-element" (change)="setPackage(0)" [checked]="package === 0"/>
-          <div class="card card-input">
-            <div class="card-header">Preschool</div>
-            <div class="card-body">Basic education for preschoolers.</div>
-          </div>
-        </label>
-      </div>
-
-      <div class="col-6 ">
-        <label>
-          <input type="radio" name="product" class="card-input-element" (change)="setPackage(1)" [checked]="package === 1" />
-          <div class="card card-input">
-            <div class="card-header">Primary School</div>
-            <div class="card-body">
-              Advanced education for primary school students.
+    <div class="col-12 m-3">
+      <div class="row">
+        <div class="col-6">
+          <label>
+            <input
+              type="radio"
+              name="product"
+              class="card-input-element"
+              (change)="setPackage(0)"
+              [checked]="package === 0"
+            />
+            <div class="card">
+              <div class="card-header">
+                <img src="../../../assets/Preschool.png" width="100px" />
+              </div>
+              <div class="card-body">Basic education for preschoolers.</div>
             </div>
-          </div>
-        </label>
+          </label>
+        </div>
+
+        <div class="col-6">
+          <label>
+            <input
+              type="radio"
+              name="product"
+              class="card-input-element"
+              (change)="setPackage(1)"
+              [checked]="package === 1"
+            />
+            <div class="card">
+              <div class="card-header">
+                <img src="../../../assets/Primary_School.png" width="100px" />
+              </div>
+              <div class="card-body">
+                Advanced education for primary school students.
+              </div>
+            </div>
+          </label>
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </div>

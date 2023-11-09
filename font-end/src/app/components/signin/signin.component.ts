@@ -44,6 +44,11 @@ export class Signin {
     }
   }
 
+  onImageClick(value:number) {
+    this.packChange();
+    this.setPackage(value);
+  }
+
   packChange() {
     this.pack = !this.pack;
     console.log(this.pack);
