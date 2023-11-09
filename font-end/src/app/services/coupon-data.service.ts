@@ -26,7 +26,7 @@ export class CouponDataService {
         shop: "Sweet Treats for Kids",
         product: "Candy Bag",
         discount: "10%",
-        details: "Treat your kids with a 10% discount on candy bags at Sweet Treats for Kids.",
+        details: "10% discount on candy bags at Sweet Treats for Kids.",
         code: "KIDSSCANDY10",
         img: "../../../assets/img/coupons/coupon3.png"
       },
@@ -34,7 +34,7 @@ export class CouponDataService {
         shop: "Kids' Fashion World",
         product: "Children's Clothes",
         discount: "25%",
-        details: "Dress your little ones in style with 25% off on children's clothes at Kids' Fashion World.",
+        details: "25% off on children's clothes at Kids' Fashion World.",
         code: "kIDS25FASHION",
         img: "../../../assets/img/coupons/coupon4.png"
       }
