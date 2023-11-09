@@ -50,25 +50,21 @@
               class="mx-4 col-2"
               required
             />
-          
-          
-              <img
-                *ngIf="kid_age >= 0 && kid_age <= 5"
-                src="../../../assets/Preschool.png"
-                style="width: 55px; height: 55px; margin-top: 10px;"
-                (click)="onImageClick(0)"
-              />
-          
-              <img
-                *ngIf="kid_age > 5"
-                src="../../../assets/Primary_School.png"
-                style="width: 55px; height: 55px; margin-top: 10px;"
-                (click)="onImageClick(1)"
-                
-              />
-            </div>
-          
-          
+
+            <img
+              *ngIf="kid_age >= 3 && kid_age <= 6"
+              src="../../../assets/Preschool.png"
+              style="width: 55px; height: 55px; margin-top: 10px"
+              (click)="packChange()"
+            />
+
+            <img
+              *ngIf="kid_age > 6"
+              src="../../../assets/Primary_School.png"
+              style="width: 55px; height: 55px; margin-top: 10px"
+              (click)="packChange()"
+            />
+          </div>
 
           <button type="submit">Signup</button>
         </form>
@@ -93,11 +89,6 @@
           />
           <button type="submit">Signin</button>
         </form>
-        <span>or signin with</span>
-        <div class="socials">
-          <i class="fab fa-facebook-f"></i>
-          <i class="fab fa-google-g"></i>
-        </div>
       </div>
     </div>
 

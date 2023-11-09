@@ -1,4 +1,4 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserRepository } from '../../models/userModel/user.repository';
 import Swal from 'sweetalert2';
@@ -9,22 +9,30 @@ import Swal from 'sweetalert2';
   styleUrls: ['./signin.component.css'],
 })
 export class Signin {
+  slider : boolean = true;
   pack: boolean = false;
-  package = 0;
-  username = '';
-  password = '';
+  package = 3;
+  username  = localStorage.getItem('username') || '';
+  password  = localStorage.getItem('password') ||'';
   email = '';
   checkPassword = '';
   kid_name = '';
-  kid_age: number = 0;
+  kid_age: number = 3;
+
 
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
     private userRepository: UserRepository,
-    private router: Router
+    private router : Router
+  
+
+
   ) {}
 
+
+
+  
   toggleChangeClass() {
     const mainContainer =
       this.elementRef.nativeElement.querySelector('.container');
@@ -44,28 +52,64 @@ export class Signin {
     }
   }
 
-  onImageClick(value:number) {
-    this.packChange();
-    this.setPackage(value);
-  }
-
   packChange() {
     this.pack = !this.pack;
     console.log(this.pack);
   }
 
-  setPackage(value:number){
+  setPackage(value: number) {
     this.package = value;
     console.log('Selected Package:', this.package);
   }
-
-  login() {
-    const isAuthenticated = this.userRepository.loginUser(
+  register() {
+    if (this.package === 3) {
+      if (this.kid_age > 6) {
+        this.package = 0;
+      } else {
+        this.package = 1;
+      }
+      console.log(this.package);
+    }
+  
+    const isRegister = this.userRepository.registerUser(
+      this.package,
       this.username,
-      this.password
+      this.email,
+      this.password,
+      this.checkPassword,
+      this.kid_name,
+      this.kid_age
     );
+  
+    if (isRegister) {
+      console.log('Pass: registration is done');
+      localStorage.setItem('username', this.username);
+      localStorage.setItem('password', this.password);
+   
+      this.login();
+    } else {
+      console.log('ERROR: registration is failed');
+      Swal.fire({
+        imageUrl: 'https://storage.googleapis.com/sticker-prod/k5Munc6RC0etp2SV8Qtp/28-1.thumb128.webp',
+        imageWidth: 150,
+        title: 'ERROR: Failed!! Sign-Up Unsuccessful...',
+        text: 'Please Sign-Up again',
+        confirmButtonText: 'Try again!',
+        reverseButtons: true,
+        confirmButtonColor: '#FC6F6F',
+      });
+    }
+  }
+  
+  login() {
+  const isAuthenticated = this.userRepository.loginUser(
+     this.username, this.password
+  );
+
     if (isAuthenticated) {
       this.calcuLogin();
+      localStorage.removeItem('username');
+      localStorage.removeItem('password');
     } else {
       console.log('ERROR: Login failed');
       Swal.fire({
@@ -76,42 +120,7 @@ export class Signin {
         confirmButtonText: 'Try again!',
         reverseButtons: true,
         confirmButtonColor: '#FC6F6F',
-    });
-  
-  
-}}
-
-  ///[บัค]
-  register() {
-    const isRegister = this.userRepository.registerUser(
-      this.package, //เลือกแพ็ค [0 = 3-6 ขวบ] , [1 = 7-9 ขวบ]
-      this.username,
-      this.email,
-      this.password,
-      this.checkPassword,
-      this.kid_name,
-      this.kid_age
-    );
-
-    if (isRegister) {
-      this.toggleChangeClass();
-      console.log('Pass : registration is done');
-
-      //  this.login();
-      // console.log('Pass : registration and login done');
-      // window.location.reload();
-      //บัคที่ต้อง reload ก่อน เพราะข้อมูลยังไม่เข้า อาจะใช้  sweet alert ช่วยกด ok แล้ว reload หน้าให้ smooth ขึ้น
-    } else {
-      console.log('ERROR: registration is failed');
-      Swal.fire({
-        imageUrl: 'https://storage.googleapis.com/sticker-prod/k5Munc6RC0etp2SV8Qtp/28-1.thumb128.webp',
-        imageWidth: 150,
-        title: 'ERROR: Failed!! Sign-Up Unsuccessful... ',
-        text: 'Please Sign-Up again',
-        confirmButtonText: 'Try again!',
-        reverseButtons: true,
-        confirmButtonColor: '#FC6F6F',
-    });
+      });
     }
   }
 
@@ -122,7 +131,7 @@ export class Signin {
 
     Swal.fire({
       title: 'Go to the board',
-      text: `Calculate: ${result} ÷ ${num1} = ?`,
+      text: `Calculate: ${result} divide by ${num1} = ?`,
       input: 'range',
       confirmButtonText: 'Yes!',
       confirmButtonColor: '#A1C554',
@@ -146,7 +155,8 @@ export class Signin {
         }
       }
     });
-  }
+
+}
 
 
 }
