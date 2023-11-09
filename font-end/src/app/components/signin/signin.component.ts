@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { UserRepository } from '../../models/userModel/user.repository';
 import Swal from 'sweetalert2';
@@ -9,30 +15,23 @@ import Swal from 'sweetalert2';
   styleUrls: ['./signin.component.css'],
 })
 export class Signin {
-  slider : boolean = true;
+  slider: boolean = true;
   pack: boolean = false;
   package = 3;
-  username  = localStorage.getItem('username') || '';
-  password  = localStorage.getItem('password') ||'';
+  username = localStorage.getItem('username') || '';
+  password = localStorage.getItem('password') || '';
   email = '';
   checkPassword = '';
   kid_name = '';
   kid_age: number = 3;
 
-
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
     private userRepository: UserRepository,
-    private router : Router
-  
-
-
+    private router: Router
   ) {}
 
-
-
-  
   toggleChangeClass() {
     const mainContainer =
       this.elementRef.nativeElement.querySelector('.container');
@@ -70,7 +69,7 @@ export class Signin {
       }
       console.log(this.package);
     }
-  
+
     const isRegister = this.userRepository.registerUser(
       this.package,
       this.username,
@@ -80,17 +79,18 @@ export class Signin {
       this.kid_name,
       this.kid_age
     );
-  
+
     if (isRegister) {
       console.log('Pass: registration is done');
       localStorage.setItem('username', this.username);
       localStorage.setItem('password', this.password);
-   
+
       this.login();
     } else {
       console.log('ERROR: registration is failed');
       Swal.fire({
-        imageUrl: 'https://storage.googleapis.com/sticker-prod/k5Munc6RC0etp2SV8Qtp/28-1.thumb128.webp',
+        imageUrl:
+          'https://storage.googleapis.com/sticker-prod/k5Munc6RC0etp2SV8Qtp/28-1.thumb128.webp',
         imageWidth: 150,
         title: 'ERROR: Failed!! Sign-Up Unsuccessful...',
         text: 'Please Sign-Up again',
@@ -100,11 +100,12 @@ export class Signin {
       });
     }
   }
-  
+
   login() {
-  const isAuthenticated = this.userRepository.loginUser(
-     this.username, this.password
-  );
+    const isAuthenticated = this.userRepository.loginUser(
+      this.username,
+      this.password
+    );
 
     if (isAuthenticated) {
       this.calcuLogin();
@@ -113,7 +114,8 @@ export class Signin {
     } else {
       console.log('ERROR: Login failed');
       Swal.fire({
-        imageUrl: 'https://storage.googleapis.com/sticker-prod/k5Munc6RC0etp2SV8Qtp/28-1.thumb128.webp',
+        imageUrl:
+          'https://storage.googleapis.com/sticker-prod/k5Munc6RC0etp2SV8Qtp/28-1.thumb128.webp',
         imageWidth: 150,
         title: 'ERROR: Failed!! Sign-In Unsuccessful...',
         text: 'Please login again',
@@ -131,32 +133,23 @@ export class Signin {
 
     Swal.fire({
       title: 'Go to the board',
-      text: `Calculate: ${result} divide by ${num1} = ?`,
-      input: 'range',
+      text: `Calculate: ${result} divided by ${num1} = ?`,
+      input: 'number',
+      inputValidator: (value) => {
+        const enteredValue = parseInt(value);
+        if (enteredValue >= 3 && enteredValue <= 15) {
+          if (enteredValue === num2) {
+            this.router.navigate(['/board']);
+          } else {
+            return 'Not Correct';
+          }
+        } else {
+          return 'Please enter a valid answer between 3 and 15.';
+        }
+        return;
+      },
       confirmButtonText: 'Yes!',
       confirmButtonColor: '#A1C554',
-    }).then((userResult) => {
-      if (userResult.isConfirmed) {
-        if (userResult.value == num2) {
-          Swal.fire({
-            title: 'Go to the board',
-            icon: 'success',
-            confirmButtonText: 'Yes!',
-            confirmButtonColor: '#A1C554',
-          });
-          this.router.navigate(['/board']);
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Incorrect',
-            text: 'Please try again',
-            confirmButtonColor: '#A1C554',
-          });
-        }
-      }
     });
-
-}
-
-
+  }
 }
