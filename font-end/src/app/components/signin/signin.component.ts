@@ -133,7 +133,7 @@ export class Signin {
 
     Swal.fire({
       title: 'Go to the board',
-      text: `Calculate: ${result} divided by ${num1} = ?`,
+      text: `Calculate: ${result} divided by ${num1}`,
       input: 'number',
       inputValidator: (value) => {
         const enteredValue = parseInt(value);
