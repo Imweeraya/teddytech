@@ -85,7 +85,9 @@ export class Signin {
       localStorage.setItem('username', this.username);
       localStorage.setItem('password', this.password);
 
-      this.login();
+      setTimeout(() => {
+        location.reload();
+      }, 1500); 
     } else {
       console.log('ERROR: registration is failed');
       Swal.fire({
