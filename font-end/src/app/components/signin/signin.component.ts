@@ -61,6 +61,67 @@ export class Signin {
     console.log('Selected Package:', this.package);
   }
   register() {
+
+    if(!this.username || !this.password || !this.checkPassword || !this.email || !this.kid_age || !this.kid_name){
+      Swal.fire({
+        imageUrl:
+          'https://storage.googleapis.com/sticker-prod/k5Munc6RC0etp2SV8Qtp/28-1.thumb128.webp',
+        imageWidth: 150,
+        title: 'ERROR: Failed!!',
+        text: 'Enter value invalid',
+        confirmButtonText: 'Try again!',
+        reverseButtons: true,
+        confirmButtonColor: '#FC6F6F',
+      });
+      return;
+    }
+
+   if (this.kid_age < 1) {
+    Swal.fire({
+      imageUrl:
+        'https://storage.googleapis.com/sticker-prod/k5Munc6RC0etp2SV8Qtp/28-1.thumb128.webp',
+      imageWidth: 150,
+      title: 'ERROR: Failed!!',
+      text: 'Age kid must more than 0 years old',
+      confirmButtonText: 'Try again!',
+      reverseButtons: true,
+      confirmButtonColor: '#FC6F6F',
+    });
+        console.log('ERROR: Kid age must be at least 1 year.');
+        return;
+    }
+    
+    if (!this.email.includes('@') || !this.email.includes('.')) {
+      Swal.fire({
+        imageUrl:
+          'https://storage.googleapis.com/sticker-prod/k5Munc6RC0etp2SV8Qtp/28-1.thumb128.webp',
+        imageWidth: 150,
+        title: 'ERROR: Failed!!',
+        text: 'Invalid email format',
+        confirmButtonText: 'Try again!',
+        reverseButtons: true,
+        confirmButtonColor: '#FC6F6F',
+      });
+        console.log('ERROR: Invalid email format.');
+        return;
+    }
+
+    if (!this.password || this.password.length <= 5) {
+      Swal.fire({
+        imageUrl:
+          'https://storage.googleapis.com/sticker-prod/k5Munc6RC0etp2SV8Qtp/28-1.thumb128.webp',
+        imageWidth: 150,
+        title: 'ERROR: Failed!!',
+        text: 'Password must have more than 5 characters',
+        confirmButtonText: 'Try again!',
+        reverseButtons: true,
+        confirmButtonColor: '#FC6F6F',
+      });
+        console.log('ERROR: Password must have more than 5 characters.');
+        return;
+    }
+    
+
     if (this.package === 3) {
       if (this.kid_age > 6) {
         this.package = 0;
@@ -84,10 +145,17 @@ export class Signin {
       console.log('Pass: registration is done');
       localStorage.setItem('username', this.username);
       localStorage.setItem('password', this.password);
+      Swal.fire({
+        imageUrl:
+          'https://storage.googleapis.com/sticker-prod/4GJxcoThzOjtPgOxD8W2/11-1.thumb128.png',
+        imageWidth: 150,
+        title: 'Sign-Up successful...',
+        text: 'Please Sign-Ip again',
+      });
 
       setTimeout(() => {
         location.reload();
-      }, 1500); 
+      }, 2000); 
     } else {
       console.log('ERROR: registration is failed');
       Swal.fire({
